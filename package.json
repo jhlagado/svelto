@@ -1,0 +1,26 @@
+{
+  "name": "simpleton",
+  "version": "1.0.0",
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
+  "description": "A simple starter with TypeScript and React using Parcel",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build --no-source-maps src/index.html"
+  },
+  "keywords": [
+    "parcel",
+    "react"
+  ],
+  "author": "John Hardy <“jh@lagado.com”> (https://www.lagado.com)",
+  "license": "MIT",
+  "dependencies": {
+    "svelte": "^3.12.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-svelte": "^4.0.4"
+  }
+}
