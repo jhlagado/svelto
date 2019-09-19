@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build --no-source-maps src/index.html --public-url /svelto/"
+    "build": "parcel build --no-source-maps src/index.html --public-url /svelto/",
+    "test": "jest"
   },
   "keywords": [
     "parcel",
@@ -20,6 +21,11 @@
     "svelte": "^3.12.1"
   },
   "devDependencies": {
+    "@testing-library/svelte": "^1.8.0",
+    "eslint": "^6.4.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^24.9.0",
+    "jest-transform-svelte": "^2.1.0",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-svelte": "^4.0.4"
   }

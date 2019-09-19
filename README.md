@@ -1,2 +1,2 @@
 # svelto
-experiments with Svelte 3 compiler
+Starter for Svelte 3 projects
