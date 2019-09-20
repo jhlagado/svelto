@@ -2,6 +2,11 @@
   .icon-defs {
     display: none;
   }
+
+  symbol {
+    stroke: black;
+    fill: transparent;
+  }
 </style>
 
 <div class="icon-defs">

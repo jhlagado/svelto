@@ -116,8 +116,8 @@ ul.open li:first-child a{
 }
 
 .primary svg{
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .home{
@@ -127,7 +127,7 @@ ul.open li:first-child a{
   height:4.2rem;
   -webkit-tap-highlight-color:transparent;
   background: 0 50% no-repeat;
-  background-size:auto 100%;
+  background-size:auto 60%;
   text-indent:-9999px
 }
 
@@ -135,16 +135,7 @@ ul li.active a{
   color:var(--prime)
 }
 
-.modal-background{
-  position:fixed;
-  width:100%;
-  height:100%;
-  left:0;
-  top:0;
-  background-color:rgba(255, 255, 255, 0.9)
-}
-
-a{
+a {
   color:inherit;
   border-bottom:none;
   transition:none
@@ -154,39 +145,14 @@ ul li:not(.active) a:hover{
   color:var(--flash)
 }
 
-ul{
-  padding:0;
-  background:none
-}
-
-ul.open{
-  padding:0;
-  background:white;
-  border:none;
-  align-self:initial
-}
-
-ul.open li{
-  display:inline;
-  text-align:left
-}
-
-ul.open li a{
-  padding:0 .8rem;
-  display:inline
-}
-
-ul::after{
+ul::after {
   display:none
 }
 
-ul li{
+ul li {
   display:inline !important
 }
 
-.hide-if-desktop{
-  display:none !important
-}
 </style>
 
 <header class="visible">
