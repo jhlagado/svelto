@@ -11,6 +11,12 @@
     width: 100%;
     height: 100%;
   }
+
+  main {
+    position: absolute;
+    top: 4rem;
+    bottom: 0px;
+  }
 </style>
 
 <svelte:head>
@@ -25,7 +31,7 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <IconDefs />
   <Header />
-  <main>
+  <main style="padding: 1rem;">
     Hello {name}! <Nested answer={42} />
   </main>
 </div>
