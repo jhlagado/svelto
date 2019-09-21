@@ -8,7 +8,7 @@
 -----------------------------------------------
 */
 :root {
-	--nav-h:       4rem;
+	--nav-h:       6rem;
 	--top-offset:  6rem;
 	--sidebar-w:  30rem;
 	--sidebar-mid-w: 36rem;
@@ -31,9 +31,9 @@
 
 /*	theme vars */
 .theme-default {
-	--bgcolor:       	#ffffff;
-	--bgcolor-light: 	#f6fafd;
-	--bgcolor-api: 		#eff8ff;
+	--back:       	#ffffff;
+	--back-light: 	#f6fafd;
+	--back-api: 		#eff8ff;
 	--prime:      	#ff3e00;
 	--second:     	#676778;
 	--flash:      	#40b3ff;
@@ -58,14 +58,48 @@
 }
 
 body {
-	--font: sans-serif;
-	--font-mono: monospace;
+	--font: 'Overpass', sans-serif;
+	--font-mono: 'Fira Mono', monospace;
+}
+
+
+/*	fonts ---------------------------------- */
+/* overpass-300normal - latin */
+@font-face {
+	font-family: 'Overpass';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		local('Overpass Light '),
+		local('Overpass-Light'),
+		url('/fonts/overpass/overpass-latin-300.woff2') format('woff2');
+}
+
+/* overpass-600normal - latin */
+@font-face {
+	font-family: 'Overpass';
+	font-style: normal;
+	font-weight: 600;
+	src:
+		local('Overpass Bold '),
+		local('Overpass-Bold'),
+		url('/fonts/overpass/overpass-latin-600.woff2') format('woff2');
+}
+
+/* fira-mono-400normal - latin */
+@font-face {
+	font-family: 'Fira Mono';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Fira Mono Regular '),
+		local('Fira Mono-Regular'),
+		url('/fonts/fira-mono/fira-mono-latin-400.woff2') format('woff2');
 }
 
 /*	base reset ----------------------------- */
 html {
-	font-size: 1rem;
-	font-weight: 100;
+	font-size: 62.5%;
 	-webkit-text-size-adjust: 100%;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 	box-sizing: border-box;
@@ -74,7 +108,7 @@ html {
 
 html,
 body,
-.app-wrapper {
+#sapper {
 	width: 100%;
 	height: 100%;
 }
@@ -103,7 +137,8 @@ a:focus { outline: none }
 
 /*	typography ----------------------------- */
 body {
-	background-color: var(--bgcolor);
+	font: 300 var(--h4)/var(--lh) var(--font);
+	background-color: var(--back);
 	color: var(--text);
 
 	/* default spacing of Overpass is a bit too airy */
@@ -393,8 +428,8 @@ table code, table span {
 .black      { color: black !important }
 .white      { color: white !important }
 
-.back       { background-color: var(--bgcolor) !important }
-.back-light { background-color: var(--bgcolor-light) !important }
+.back       { background-color: var(--back) !important }
+.back-light { background-color: var(--back-light) !important }
 .bg-prime   { background-color: var(--prime) !important }
 .bg-second  { background-color: var(--second) !important }
 .bg-flash   { background-color: var(--flash) !important }
@@ -443,7 +478,7 @@ input[type="checkbox"]::after {
 	border-radius: 1em;
 	background: white;
 	box-shadow: 0 0px 1px rgba(0,0,0,.4), 0 4px 2px rgba(0,0,0,.1);
-	transition: background .2s ease-out, left .2s ease-out;
+	-webkit-transition: background .2s ease-out, left .2s ease-out;
 }
 
 input[type="checkbox"]:checked::after {
