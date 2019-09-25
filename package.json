@@ -19,6 +19,8 @@
   "author": "John Hardy <“jh@lagado.com”> (https://www.lagado.com)",
   "license": "MIT",
   "dependencies": {
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.1",
     "svelte": "^3.12.1"
   },
   "devDependencies": {
