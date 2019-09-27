@@ -1,71 +1,62 @@
-// const tradeTokenForUser = require('./auth-helpers');
 const { ApolloServer, gql } = require('apollo-server');
+const { MongoClient, ObjectId } = require('mongodb');
 
-// Source: https://thegreatestbooks.org/
-const books = [
-  { id: '1', title: 'In Search of Lost Time' },
-  { id: '2', title: 'Don Quixote' },
-  { id: '3', title: 'Ulysses' },
-  { id: '4', title: 'The Great Gatsby666' },
-  { id: '5', title: 'Moby Dick' },
-  { id: '6', title: 'Hamlet' },
-  { id: '7', title: 'War and Peace' },
-  { id: '8', title: 'The Odyssey' },
-  { id: '9', title: 'One Hundred Years of Solitude' },
-  { id: '10', title: 'The Divine Comedy' }
-];
+const MONGO_URL = 'mongodb://localhost:27017';
+
+const prepare = (obj) => ({
+  ...obj,
+  _id: obj._id.toString(),
+})
 
 const typeDefs = gql`
-  type Book {
-    id: ID!
-    title: String!
+  type Customer {
+    _id: ID!
+    first_name: String!
+    last_name: String!
+    email: String!
+    gender: String!
+    ip_address: String!
   }
   type Query {
-    books: [Book!]!,
-    me: User
-  }
-  type User {
-    id: ID!
-    username: String!
+    customers: [Customer!]!
+    customer(_id: String): Customer
   }
 `;
 
-const resolvers = {
-  Query: {
-    async books() {
-      return books;
+const run = async () => {
+
+  const client = await MongoClient.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  var db = client.db('db');
+
+  const Customers = db.collection('customers');
+
+  const resolvers = {
+    Query: {
+      async customers() {
+        return (await Customers.find({}).toArray()).map(prepare)
+      },
+      async customer(root, { _id }) {
+        return prepare(await Customers.findOne(ObjectId(_id)))
+      },
     }
-  }
-};
+  };
 
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: async ({ req }) => {
+      return {
+      };
+    },
+  });
 
+  server.listen().then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
 
-const HEADER_NAME = 'authorization';
+}
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: async ({ req }) => {
-    let authToken = null;
-    let currentUser = null;
-
-     try {
-        authToken = req.headers[HEADER_NAME];
-        console.log(authToken)
-        // if (authToken) {
-        //      currentUser = await tradeTokenForUser(authToken);
-        // }
-     } catch (e) {
-        console.warn(`Unable to authenticate using auth token: ${authToken}`);
-     }
-
-    return {
-        authToken,
-        currentUser,
-    };
- },
-});
-
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+run();

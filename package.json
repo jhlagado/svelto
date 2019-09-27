@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html --port 2200",
-    "server": "node server/apollo",
+    "server": "nodemon server/apollo --watch server",
     "build": "parcel build --no-source-maps src/index.html --public-url /svelto/",
     "test": "jest",
     "pretty": "prettier --write --only-changed \"src/**/*.js\""
@@ -31,9 +31,13 @@
     "eslint-config-google": "^0.14.0",
     "jest": "^24.9.0",
     "jest-transform-svelte": "^2.1.0",
+    "nodemon": "^1.19.2",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-svelte": "^4.0.4",
     "prettier": "^1.18.2",
     "prettier-plugin-svelte": "^0.7.0"
+  },
+  "nodemonConfig": {
+    "ignore": "node_modules/**/node_modules",
   }
 }
