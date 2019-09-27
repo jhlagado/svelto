@@ -3,10 +3,10 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 const MONGO_URL = 'mongodb://localhost:27017';
 
-const prepare = (obj) => ({
+const prepare = (obj) => (console.log({obj}), {
   ...obj,
   _id: obj._id.toString(),
-})
+});
 
 const typeDefs = gql`
   type Customer {
