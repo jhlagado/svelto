@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html --port 2200",
+    "server": "node server/apollo",
     "build": "parcel build --no-source-maps src/index.html --public-url /svelto/",
     "test": "jest",
     "pretty": "prettier --write --only-changed \"src/**/*.js\""
@@ -19,6 +20,7 @@
   "author": "John Hardy <“jh@lagado.com”> (https://www.lagado.com)",
   "license": "MIT",
   "dependencies": {
+    "apollo-server": "^2.9.4",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.1",
     "svelte": "^3.12.1"
