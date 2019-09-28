@@ -5,10 +5,13 @@
   import Nested from './Nested.svelte';
 
   export let name;
+  export let config;
 
   let customers = [];
 
   onMount(async () => {
+    const serviceUrl = config.SERVICE_URL;
+    console.log({serviceUrl});
 		const res = await fetch(`https://4000-b33c1f76-0cd1-4f22-9dce-87f4755573e1.ws-ap0.gitpod.io`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
@@ -33,7 +36,6 @@
     });
 		const data = await res.json();
     customers = data.data.customers;
-    console.log(data);
 	});
 </script>
 
