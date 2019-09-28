@@ -14,6 +14,7 @@ e.g.
 ```json
 {
     "SERVICE_URL": "https://4000-b33c1f76-0cd1-4f22-9dce-87f4755573e1.ws-ap0.gitpod.io/",
+
     "FEATURE_TOGGLES": {
     }
 }
