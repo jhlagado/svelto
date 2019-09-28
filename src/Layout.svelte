@@ -36,7 +36,7 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <Icons/>
 	<PreloadingIndicator/>
-  <Nav {segment} {page} logo="svelte-logo-horizontal.svg">
+  <Nav {segment} {page} logo="assets/svelte-logo-horizontal.svg">
     <NavItem segment="tutorial">Tutorial</NavItem>
     <NavItem segment="docs">API</NavItem>
     <NavItem segment="examples">Examples</NavItem>

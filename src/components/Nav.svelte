@@ -57,11 +57,11 @@
 		padding: 0 var(--side-nav);
 		margin: 0 auto;
 		background-color: white;
-		box-shadow: 0 -0.4rem 0.9rem 0.2rem rgba(0,0,0,.5);
+		box-shadow: 0 -0.4rem 0.9rem 0.2rem rgba(0, 0, 0, .5);
 		font-family: var(--font);
 		z-index: 100;
 		user-select: none;
-		transform: translate(0,calc(-100% - 1rem));
+		transform: translate(0, calc(-100% - 1rem));
 		transition: transform 0.2s;
 	}
 
@@ -236,25 +236,13 @@
 
 <header class:visible="{visible || open}">
 	<nav>
-		<a
-			rel="prefetch"
-			href="."
-			class="home"
-			title="Homepage"
-			style="background-image: url({logo})"
-		>Home</a>
+		<a rel="prefetch" href="." class="home" title="Homepage" style="background-image: url({logo})">Home</a>
 
 		{#if open}
-			<div class="modal-background hide-if-desktop" on:click="{() => open = false}"></div>
+		<div class="modal-background hide-if-desktop" on:click="{() => open = false}"></div>
 		{/if}
 
-		<ul
-			class="primary"
-			class:open
-			on:touchstart|capture={intercept_touchstart}
-			on:mouseenter="{() => open = true}"
-			on:mouseleave="{() => open = false}"
-		>
+		<ul class="primary" class:open on:touchstart|capture={intercept_touchstart} on:mouseenter="{() => open = true}" on:mouseleave="{() => open = false}">
 			<li class="hide-if-desktop" class:active="{!segment}"><a rel="prefetch" href=".">Home</a></li>
 			<slot></slot>
 		</ul>
