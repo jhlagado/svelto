@@ -22,8 +22,6 @@
   "dependencies": {
     "apollo-server": "^2.9.4",
     "mongodb": "^3.3.2",
-    "mongoose": "^5.7.1",
-    "svel": "^0.4.1",
     "svelte": "^3.12.1"
   },
   "devDependencies": {
@@ -34,6 +32,7 @@
     "jest-transform-svelte": "^2.1.0",
     "nodemon": "^1.19.2",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.2.1",
     "parcel-plugin-svelte": "^4.0.4",
     "prettier": "^1.18.2",
     "prettier-plugin-svelte": "^0.7.0"

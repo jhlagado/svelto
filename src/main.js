@@ -1,11 +1,22 @@
 import App from './App.svelte';
 import './base.css';
 
-const app = new App({
-  target: document.body,
-  props: {
-    name: 'world',
-  },
-});
+const run = async () => {
 
-export default app;
+  const res = await fetch('./config/config.js', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+  });
+  console.log(res.json());
+  const app = new App({
+    target: document.body,
+    props: {
+      name: 'world',
+    },
+  });
+
+  return app;
+}
+
+export default run();
