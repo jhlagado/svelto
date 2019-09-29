@@ -32,11 +32,16 @@
     "jest-transform-svelte": "^2.1.0",
     "nodemon": "^1.19.2",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.2.1",
     "parcel-plugin-svelte": "^4.0.4",
     "prettier": "^1.18.2",
     "prettier-plugin-svelte": "^0.7.0"
   },
   "nodemonConfig": {
     "ignore": "node_modules/**/node_modules"
+  },
+  "staticFiles": {
+    "staticPath": "static",
+    "watcherGlob": "**"
   }
 }

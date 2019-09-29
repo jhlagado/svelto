@@ -25,7 +25,6 @@
 </style>
 
 <svelte:head>
-  <link rel="shortcut icon" href="../assets/favicon.ico" />
   <title>Svelte app!</title>
 </svelte:head>
 

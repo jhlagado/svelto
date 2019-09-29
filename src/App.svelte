@@ -10,7 +10,12 @@
   let customers = [];
 
   onMount(async () => {
-    const serviceUrl = config.SERVICE_URL;
+    let serviceUrl = config.SERVICE_URL;
+    if (!serviceUrl) {
+      const host = window.location.host;
+      serviceUrl = `https://4000-${host.slice(5)}/`;
+    }
+
     console.log({serviceUrl});
 		const res = await fetch(serviceUrl, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
