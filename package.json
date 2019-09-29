@@ -41,7 +41,7 @@
     "ignore": "node_modules/**/node_modules"
   },
   "staticFiles": {
-    "staticPath": "static",
-    "watcherGlob": "**"
+      "staticPath": "static",
+      "watcherGlob": "**"
   }
 }
