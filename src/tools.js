@@ -13,5 +13,5 @@ export const getServiceUrl = (config) => {
   if (protocol === 'http:' && hostname === 'localhost') {
     return `http://localhost:${port}/`;
   }
-  return `${protocol}://${port}-${hostname.slice(5)}/`;
+  return `${protocol}//${port}-${hostname.slice(5)}/`;
 };
