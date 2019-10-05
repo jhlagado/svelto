@@ -51,7 +51,6 @@ export const createStore = (config) => {
         }),
       });
       const object = await res.json();
-      console.log('3');
       update((state) => {
         return ({
           ...state,
