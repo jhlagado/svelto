@@ -20,17 +20,18 @@
   "author": "John Hardy <“jh@lagado.com”> (https://www.lagado.com)",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^2.9.4",
+    "apollo-server": "^2.9.5",
     "mongodb": "^3.3.2",
-    "svelte": "^3.12.1"
+    "svelte": "^3.12.1",
+    "tools": "0.0.0"
   },
   "devDependencies": {
     "@testing-library/svelte": "^1.8.0",
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0",
     "jest": "^24.9.0",
     "jest-transform-svelte": "^2.1.0",
-    "nodemon": "^1.19.2",
+    "nodemon": "^1.19.3",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-static-files-copy": "^2.2.1",
     "parcel-plugin-svelte": "^4.0.4",
@@ -38,10 +39,13 @@
     "prettier-plugin-svelte": "^0.7.0"
   },
   "nodemonConfig": {
-    "ignore": "node_modules/**/node_modules"
+    "ignore": "node_modules/**/node_modules",
+    "env": {
+      "PORT": "4000"
+    }
   },
   "staticFiles": {
-      "staticPath": "static",
-      "watcherGlob": "**"
+    "staticPath": "static",
+    "watcherGlob": "**"
   }
 }

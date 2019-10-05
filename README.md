@@ -1,7 +1,23 @@
 # svelto
 Starter for Svelte 3 projects
 
-to start the backend
+Install Mongo
+
+See for installation instructions:
+https://docs.mongodb.com/manual/installation/
+
+For example install on MacOS
+```
+brew tap mongodb/brew
+brew install mongodb-community@4.2
+```
+Run Mongo Daemon
+
+```
+mongod --config /usr/local/etc/mongod.conf
+```
+
+now start the backend server
 
 ```
 npm run server
@@ -13,15 +29,16 @@ e.g.
 
 ```json
 {
-    "SERVICE_URL": "https://4000-b33c1f76-0cd1-4f22-9dce-87f4755573e1.ws-ap0.gitpod.io/",
+    "SERVICE_URL": "http://locahost:4000/",
 
     "FEATURE_TOGGLES": {
     }
 }
 ```
 
-to start the front end
+start the front end
 
 ```
 npm start
 ```
+

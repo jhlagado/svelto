@@ -1,15 +1,15 @@
 const fs = require('fs').promises;
 const path = require('path');
-const { MongoClient } = require('mongodb');
+const {MongoClient} = require('mongodb');
 
 const MONGO_URL = 'mongodb://localhost:27017';
 
-const run = async() => {
+const run = async () => {
   let client;
   try {
     client = await MongoClient.connect(MONGO_URL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
     const db = client.db('db');
     const Customers = db.collection('customers');
@@ -18,9 +18,9 @@ const run = async() => {
     const list = JSON.parse(text);
     const doc = await Customers.insertMany(list);
 
-    console.log(doc)
-  } catch(err) {
-    console.error(err)
+    console.log(doc);
+  } catch (err) {
+    console.error(err);
   } finally {
     client.close();
   }

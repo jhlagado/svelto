@@ -1,5 +1,6 @@
-const { ApolloServer, gql } = require('apollo-server');
-const { MongoClient, ObjectId } = require('mongodb');
+/* eslint-disable new-cap */
+const {ApolloServer, gql} = require('apollo-server');
+const {MongoClient, ObjectId} = require('mongodb');
 
 const MONGO_URL = 'mongodb://localhost:27017';
 
@@ -24,39 +25,38 @@ const typeDefs = gql`
 `;
 
 const run = async () => {
-
   const client = await MongoClient.connect(MONGO_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   });
-  var db = client.db('db');
+  const db = client.db('db');
 
   const Customers = db.collection('customers');
 
   const resolvers = {
     Query: {
       async customers() {
-        return (await Customers.find({}).toArray()).map(prepare)
+        return (await Customers.find({}).toArray()).map(prepare);
       },
-      async customer(root, { _id }) {
-        return prepare(await Customers.findOne(ObjectId(_id)))
+      async customer(root, {_id}) {
+        return prepare(await Customers.findOne(ObjectId(_id)));
       },
-    }
+    },
   };
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: async ({ req }) => {
+    context: async ({req}) => {
       return {
       };
     },
   });
 
-  server.listen().then(({ url }) => {
+  const port = process.env.PORT || '4000';
+  server.listen(port).then(({url}) => {
     console.log(`🚀  Server ready at ${url}`);
   });
-
-}
+};
 
 run();

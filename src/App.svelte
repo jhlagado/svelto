@@ -1,47 +1,24 @@
 <script>
-  import { onMount } from 'svelte';
+  import {onMount} from 'svelte';
+  import {createStore} from './stores';
 
   import Layout from './Layout.svelte';
   import Nested from './Nested.svelte';
 
+  /* props */
   export let name;
   export let config;
 
   let customers = [];
 
-  onMount(async () => {
-    let serviceUrl = config.SERVICE_URL;
-    if (!serviceUrl) {
-      const host = window.location.host;
-      serviceUrl = `https://4000-${host.slice(5)}/`;
-    }
+  const store = createStore(config);
 
-    console.log({serviceUrl});
-		const res = await fetch(serviceUrl, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrer: 'no-referrer', // no-referrer, *client
-      body: JSON.stringify({ query: `{
-          customers {
-            _id
-            first_name
-            last_name
-            email
-            gender
-            ip_address
-          }
-        }` // body data type must match "Content-Type" header
-      }),
-    });
-		const data = await res.json();
-    customers = data.data.customers;
+  onMount(async () => {
+    store.loadCustomers();
 	});
+
+  $: customers = $store.data;
+
 </script>
 
 <style>
