@@ -1,3 +1,8 @@
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import { gql } from 'apollo-boost';
+
 import {writable} from 'svelte/store';
 import {getServiceUrl} from './tools';
 
@@ -22,6 +27,16 @@ const StoreStatus = {
 export const createStore = (config) => {
   const serviceUrl = getServiceUrl(config);
 
+  const cache = new InMemoryCache();
+  const link = new HttpLink({
+    uri: serviceUrl,
+  })
+
+  const client = new ApolloClient({
+    cache,
+    link
+  })
+
   const initState = {
     status: StoreStatus.INIT,
     error: null,
@@ -32,25 +47,21 @@ export const createStore = (config) => {
 
   const fetchCustomers = async () => {
     try {
-      const res = await fetch(serviceUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: `{
-            customers {
-              _id
-              first_name
-              last_name
-              email
-              gender
-              ip_address
-            }
-          }`,
-        }),
+      const object = await client.query({
+        query: gql`
+        {
+          customers {
+            _id
+            first_name
+            last_name
+            email
+            gender
+            ip_address
+          }
+        }
+        `
       });
-      const object = await res.json();
+
       update((state) => {
         return ({
           ...state,
