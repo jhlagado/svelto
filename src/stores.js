@@ -1,7 +1,7 @@
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { gql } from 'apollo-boost';
+import {ApolloClient} from 'apollo-client';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {HttpLink} from 'apollo-link-http';
+import {gql} from 'apollo-boost';
 
 import {writable} from 'svelte/store';
 import {getServiceUrl} from './tools';
@@ -12,6 +12,7 @@ const StoreStatus = {
   SUCCESS: 'SUCCESS',
   FAILURE: 'FAILURE',
 };
+
 
 /**
  * @function
@@ -24,18 +25,18 @@ const StoreStatus = {
  *  }
  * }
  */
-export const createStore = (config) => {
+export const connect = (config) => {
   const serviceUrl = getServiceUrl(config);
 
   const cache = new InMemoryCache();
   const link = new HttpLink({
     uri: serviceUrl,
-  })
+  });
 
   const client = new ApolloClient({
     cache,
-    link
-  })
+    link,
+  });
 
   const initState = {
     status: StoreStatus.INIT,
@@ -43,9 +44,7 @@ export const createStore = (config) => {
     data: [],
   };
 
-  const {subscribe, set, update} = writable(initState);
-
-  const fetchCustomers = async () => {
+  const fetchCustomers = async ({update}) => {
     try {
       const object = await client.query({
         query: gql`
@@ -59,7 +58,7 @@ export const createStore = (config) => {
             ip_address
           }
         }
-        `
+        `,
       });
 
       update((state) => {
@@ -79,25 +78,23 @@ export const createStore = (config) => {
 
   return {
 
-    subscribe,
-
-    reset() {
-      set(initState);
-    },
-
     loadCustomers() {
-      update((state) => {
+      const store = writable(initState);
+
+      store.update((state) => {
         if (state.status === StoreStatus.PENDING) {
           return state;
         }
 
-        fetchCustomers();
+        fetchCustomers(store);
 
         return {
           ...state,
           status: StoreStatus.PENDING,
         };
       });
+
+      return store;
     },
   };
 };

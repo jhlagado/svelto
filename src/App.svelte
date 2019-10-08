@@ -1,39 +1,43 @@
 <script>
   import {onMount} from 'svelte';
-  import router, { curRoute } from './router';
-  import {createStore} from './stores';
+  import router, { curRoute, matchRoute } from './router';
+  import {connect} from './stores';
 
   import RouterLink from './RouterLink.svelte';
   import Layout from './Layout.svelte';
   import Nested from './Nested.svelte';
 
+  import Home from './Home.svelte';
+
   /* props */
-  export let name;
   export let config;
 
-  let store = createStore(config);
+  let connection = connect(config);
+  let store = connection.loadCustomers();
 
   onMount(async () => {
     curRoute.set(window.location.pathname);
     if (!history.state) {
       window.history.replaceState({path: window.location.pathname}, '',   window.location.href)
     }
-    store.loadCustomers();
 	});
 
   function handlerBackNavigation(event){
     curRoute.set(event.state.path)
   }
 
-  const matchRoute = (router, curRoute) => ({
-    route: router[curRoute],
-    params: {id: 0},
-  });
+  const matcher = matchRoute(router);
 
-  let route = router['/home'];
-  let params = 1;
+  let component = Home;
+  let params = {};
 
-  //$: {route, params} = matchRoute(router, $curRoute);
+  $: {
+    const matched = matcher($curRoute);
+    if (matched !== null) {
+      component = matched.component;
+      params = matched.params;
+    }
+}
 
 </script>
 
@@ -52,8 +56,7 @@
     <RouterLink page={{path: '/about', name: 'About'}} />
 
     <div id="pageContent">
-      <!-- Page component updates here -->
-      <svelte:component this={router[$curRoute]} params={params} store={store} />
+      <svelte:component this={component} params={params} store={store} />
     </div>
 
   </div>
