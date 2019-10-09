@@ -2,7 +2,7 @@
 	import {
     Icons, Icon, Nav, NavItem,
     PreloadingIndicator
-  } from './components';
+  } from './';
 
   const segment = 'docs';
   const page = {

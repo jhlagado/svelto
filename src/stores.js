@@ -4,7 +4,7 @@ import {HttpLink} from 'apollo-link-http';
 import {gql} from 'apollo-boost';
 
 import {writable} from 'svelte/store';
-import {getServiceUrl} from './tools';
+import {getServiceUrl} from './utils/tools';
 
 const StoreStatus = {
   INIT: 'INIT',
