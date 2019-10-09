@@ -26,6 +26,12 @@
 		}
 	}
 
+	function hideShowBg(open) {
+		return open ?
+			`none`:
+			`background:url(/icons/chevron.svg) calc(100% - 1em) 0.05em no-repeat`;
+	}
+
 	// Prevents navbar to show/hide when clicking in docs sidebar
 	let hash_changed = false;
 	function handle_hashchange() {
@@ -240,13 +246,12 @@
 		{#if open}
 		<div class="modal-background hide-if-desktop" on:click="{() => open = false}"></div>
 		{/if}
-
 		<ul class="primary" class:open
-      style="background:url(/icons/chevron.svg) calc(100% - 1em) 0.05em no-repeat"
-      on:touchstart|capture={intercept_touchstart}
-      on:mouseenter="{() => open = true}"
-      on:mouseleave="{() => open = false}"
-    >
+			style="{hideShowBg(open)}"
+			on:touchstart|capture={intercept_touchstart}
+			on:mouseenter="{() => open = true}"
+			on:mouseleave="{() => open = false}"
+		>
 			<li class="hide-if-desktop" class:active="{!segment}"><a rel="prefetch" href=".">Home</a></li>
 			<slot></slot>
 		</ul>
