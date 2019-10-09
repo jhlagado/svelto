@@ -22,6 +22,7 @@ now start the backend server
 ```
 npm run server
 ```
+expose the port 4000
 
 configure `config/config.json` to point to the backend server
 
@@ -41,4 +42,5 @@ start the front end
 ```
 npm start
 ```
+expose the port 2200
 
