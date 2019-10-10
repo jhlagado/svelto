@@ -1,7 +1,13 @@
 <script>
-  /* props */
+  import Icon from '../components/Icon';
+  import NavLink from '../components/NavLink';
+  import Card from '../components/Card';
+
+/* props */
   export let params;
   export let store;
+
+  // const {store} = props;
 
   let customer = [];
 
@@ -15,13 +21,18 @@
 </style>
 
 <h1>Customer</h1>
+<NavLink path="/">
+  <Icon name="arrow-left"/> Back
+</NavLink>
 {#if customer}
-<table>
-  <tr><td>ID</td><td>{params.id}</td>
-  <tr><td>First Name</td><td>{customer.first_name}</td></tr>
-  <tr><td>Last Name</td><td>{customer.last_name}</td></tr>
-  <tr><td>Email</td><td>{customer.email}</td></tr>
-  <tr><td>Gender</td><td>{customer.gender}</td></tr>
-  <tr><td>IP Address</td><td>{customer.ip_address}</td></tr>
-</table>
+<Card>
+  <table>
+    <tr><td>ID</td><td>{params.id}</td>
+    <tr><td>First Name</td><td>{customer.first_name}</td></tr>
+    <tr><td>Last Name</td><td>{customer.last_name}</td></tr>
+    <tr><td>Email</td><td>{customer.email}</td></tr>
+    <tr><td>Gender</td><td>{customer.gender}</td></tr>
+    <tr><td>IP Address</td><td>{customer.ip_address}</td></tr>
+  </table>
+</Card>
 {/if}

@@ -1,9 +1,11 @@
 <script>
-  import RouterLink from '../components/RouterLink.svelte';
+  import NavLink from '../components/NavLink.svelte';
 
   /* props */
   export let params;
   export let store;
+
+  // const {store} = props;
 
   let customers = [];
 
@@ -20,9 +22,9 @@
 {#each customers as customer }
   <tr>
     <td>
-      <RouterLink path="/customer/{customer._id}">
+      <NavLink path="/customer/{customer._id}">
         {customer.first_name} {customer.last_name}
-      </RouterLink>
+      </NavLink>
     </td>
     <td>{customer.email}</td>
     <td>{customer.gender}</td>

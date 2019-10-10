@@ -1,7 +1,10 @@
 <script>
+
   /* props */
   export let params;
   export let store;
+
+  // const {store} = props;
 
   let customer = [];
 
