@@ -27,12 +27,12 @@
 {#if customer}
 <Card>
   <table>
-    <tr><td>ID</td><td>{params.id}</td>
-    <tr><td>First Name</td><td>{customer.first_name}</td></tr>
-    <tr><td>Last Name</td><td>{customer.last_name}</td></tr>
-    <tr><td>Email</td><td>{customer.email}</td></tr>
-    <tr><td>Gender</td><td>{customer.gender}</td></tr>
-    <tr><td>IP Address</td><td>{customer.ip_address}</td></tr>
+    <tr><td>ID:&nbsp;{params.id}</td>
+    <tr><td><label>First Name<input type="text" value="{customer.first_name}"></label></td></tr>
+    <tr><td><label>Last Name<input type="text" value="{customer.last_name}"></label></td></tr>
+    <tr><td><label>Email<input type="text" value="{customer.email}"></label></td></tr>
+    <tr><td><label>Gender<input type="text" value="{customer.gender}"></label></td></tr>
+    <tr><td><label>IP Address<input type="text" value="{customer.ip_address}"></label></td></tr>
   </table>
 </Card>
 {/if}

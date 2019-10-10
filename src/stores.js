@@ -13,7 +13,6 @@ const StoreStatus = {
   FAILURE: 'FAILURE',
 };
 
-
 /**
  * @function
  * @name createStore
