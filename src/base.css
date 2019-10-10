@@ -489,7 +489,7 @@ input[type="text"] {
 	font-family: inherit;
 	font-size: inherit;
 	padding: 0.4em;
-	margin: 0 0 0.5em 0.5em;
+	margin: 0 0 0 0.5em;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
