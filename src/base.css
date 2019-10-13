@@ -1,3 +1,77 @@
+/* Box sizing rules */
+/* https://hankchizljaw.com/wrote/a-modern-css-reset/ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
 /*
 -----------------------------------------------
 	vars – css custom-properties
@@ -436,7 +510,6 @@ table code, table span {
 
 /*	inputs --------------------------------- */
 input[type="checkbox"] {
-	/* display: block; */
 	position: relative;
 	height: 1em;
 	width: calc(100% - 0.6em);
@@ -459,7 +532,6 @@ input[type="checkbox"]::before {
 	top: 0;
 	left: 0;
 	background: var(--second);
-	/* box-sizing: border-box; */
 	box-sizing: content-box;
 }
 
@@ -476,21 +548,28 @@ input[type="checkbox"]::after {
 	top: 2px;
 	left: 2px;
 	border-radius: 1em;
-	background: white;
+	background-color: white;
 	box-shadow: 0 0px 1px rgba(0,0,0,.4), 0 4px 2px rgba(0,0,0,.1);
-	-webkit-transition: background .2s ease-out, left .2s ease-out;
+	-webkit-transition: background-color .2s ease-out, left .2s ease-out;
+	transition: background-color .2s ease-out, left .2s ease-out;
 }
 
 input[type="checkbox"]:checked::after {
 	left: calc(100% - 9px);
 }
 
-input[type="text"] {
+input[type="text"], input[type="email"] {
 	font-family: inherit;
 	font-size: inherit;
 	padding: 0.4em;
-	margin: 0 0 0 0.5em;
+	margin: 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
+}
+
+.controls {
+	border-top: 1px solid rgba(255,255,255,.15);
+    padding: 1em 0 0 0;
+    display: flex;
 }

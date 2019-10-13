@@ -2,19 +2,16 @@
   import Icon from '../components/Icon';
   import NavLink from '../components/NavLink';
   import Card from '../components/Card';
+  import Form from '../components/Form';
+  import Field from '../components/Field';
 
 /* props */
   export let params;
-  export let store;
+  export let customers = [];
 
-  // const {store} = props;
-
-  let customer = [];
-
-  $: customer = $store.data.find(
+  const customer = customers.find(
     customer => customer._id === params.id
   );
-
 </script>
 
 <style>
@@ -26,13 +23,30 @@
 </NavLink>
 {#if customer}
 <Card>
-  <table>
-    <tr><td>ID:&nbsp;{params.id}</td>
-    <tr><td><label>First Name<input type="text" value="{customer.first_name}"></label></td></tr>
-    <tr><td><label>Last Name<input type="text" value="{customer.last_name}"></label></td></tr>
-    <tr><td><label>Email<input type="text" value="{customer.email}"></label></td></tr>
-    <tr><td><label>Gender<input type="text" value="{customer.gender}"></label></td></tr>
-    <tr><td><label>IP Address<input type="text" value="{customer.ip_address}"></label></td></tr>
-  </table>
+  <Form>
+    <Field>
+      <label>First name</label>
+      <input required type="text" id="first_name" value={customer.first_name} />
+      <span slot="tooltip">Info about this field</span>
+    </Field>
+    <Field>
+      <label>Last name</label>
+      <input required type="text" id="last_name" value={customer.last_name} />
+      <span slot="tooltip">Info about this field</span>
+    </Field>
+    <Field>
+      <label>Email address</label>
+      <input required type="email" id="email" value={customer.email} />
+      <span slot="tooltip">Info about this field</span>
+    </Field>
+    <Field>
+      <label>IP Address</label>
+      <input required type="text" id="ip_address" value={customer.ip_address} />
+      <span slot="tooltip">Info about this field</span>
+    </Field>
+    <div class="controls">
+      <button class="btn white bg-prime" type="submit">Submit</button>
+    </div>
+  </Form>
 </Card>
 {/if}

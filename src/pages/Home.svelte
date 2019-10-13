@@ -3,14 +3,8 @@
 
   /* props */
   export let params;
-  export let store;
-
-  // const {store} = props;
-
-  let customers = [];
-
-  $: customers = $store.data;
-
+  export let customers = [];
+  
 </script>
 
 <style>
@@ -27,7 +21,6 @@
       </NavLink>
     </td>
     <td>{customer.email}</td>
-    <td>{customer.gender}</td>
     <td>{customer.ip_address}</td>
   </tr>
 {/each}

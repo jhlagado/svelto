@@ -1,5 +1,7 @@
 <script>
-  import { connect } from './stores';
+  import { onMount } from 'svelte';
+  import { monitor } from './utils/loader-util';
+  import { createClient, fetchCustomers } from './stores';
 
   import Layout from './components/Layout.svelte';
   import Router from './components/Router.svelte';
@@ -11,9 +13,16 @@
   /* props */
   export let config;
 
-  let connection = connect(config);
-  let store = connection.loadCustomers();
-  const props = {store};
+  let client = createClient(config);
+  const props = {
+    customers: []
+  };
+
+  onMount(async () => {
+    const {data} = await monitor(fetchCustomers(client));
+    const customers = data.customers;
+    props.customers = customers;
+  });
 
   const routes = [
     { path: '/', component: Home, default: true },

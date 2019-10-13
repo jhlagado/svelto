@@ -1,7 +1,6 @@
 <script>
 	import {
-    Icons, Icon, Nav, NavItem,
-    PreloadingIndicator
+    Icons, Icon, Nav, NavItem, Loader,
   } from './';
 
   const segment = 'docs';
@@ -34,8 +33,8 @@
   <![endif]-->
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <Icons/>
-	<PreloadingIndicator/>
-  <Nav {segment} {page} logo="/assets/svelte-logo-horizontal.svg">
+	<Loader />
+  <Nav {segment} {page} logo="/assets/lagado-square.svg">
     <NavItem segment="tutorial">Tutorial</NavItem>
     <NavItem segment="docs">API</NavItem>
     <NavItem segment="examples">Examples</NavItem>
